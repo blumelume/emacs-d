@@ -2,6 +2,7 @@
 .cache/
 .emacs.desktop*
 transient/
+elpa/
 .lsp-session*
 .dap-breakpoints
 *~
