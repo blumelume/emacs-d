@@ -35,6 +35,4 @@
 
 (add-hook 'prog-mode 'highlight-indent-guides-mode)
 
-(require 'multiple-cursors)
-
 (provide 'setup-coding)

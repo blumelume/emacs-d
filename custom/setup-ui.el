@@ -2,7 +2,9 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
-(ctrlf-mode +1)
+(use-package ctrlf
+  :config
+  (ctrlf-mode +1))
 
 ;; icon config
 (setq image-types (cons 'svg image-types))
@@ -31,12 +33,17 @@
   )
 
 ;; dim / focus
-(require 'dimmer)
-(dimmer-configure-which-key)
-(dimmer-configure-helm)
-(dimmer-mode t)
+(use-package dimmer
+  :config
+  (dimmer-configure-which-key)
+  (dimmer-configure-helm)
+  (dimmer-mode t)
+  )
 
-(solaire-global-mode +1)
+(use-package solaire-mode
+  :config
+  (solaire-global-mode +1)
+  )
 
 ;; tab-bar
 (use-package centaur-tabs
@@ -49,8 +56,9 @@
 ;; (centaur-tabs-headline-match)
 
 ;; enabling powerline
-(require 'doom-modeline)
-(doom-modeline-mode 1)
+(use-package doom-modeline
+  :config
+  (doom-modeline-mode 1))
 
 ;; editor config
 (add-hook 'prog-mode #'linum-on) ;; line numbers for code editors
@@ -58,12 +66,13 @@
 (setq tab-width 2)
 
 ;; tree-view
+(use-package all-the-icons)
 (use-package treemacs
   :ensure t)
 
-(use-package treemacs-icons-dired
-  :hook (dired-mode . treemacs-icons-dired-enable-once)
-  :ensure t)
+;; (use-package treemacs-icons-dired
+;;   :hook (dired-mode . treemacs-icons-dired-enable-once)
+;;   :ensure t)
 
 (use-package treemacs-magit
   :after (treemacs magit)
