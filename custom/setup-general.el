@@ -12,6 +12,6 @@
 (setq mac-option-key-is-meta t)
 (setq mac-right-option-modifier nil)
 
-;;(desktop-save-mode 1)
+(desktop-save-mode 1)
 
 (provide 'setup-general)

@@ -19,7 +19,11 @@
 (use-package web-mode)
 (use-package js2-mode)
 (use-package yasnippet)
-(use-package vue-mode)
+
+
+(use-package vue-mode
+  :hook (vue-mode . lsp)
+  :mode "\\.vue\\'")
 
 (use-package tide :ensure t)
 (use-package flycheck :ensure t)
