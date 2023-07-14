@@ -26,7 +26,7 @@
 (require 'setup-general)
 (require 'setup-ui)
 (require 'setup-dashboard)
-(require 'setup-coding)
+(require 'setup-prog-mode)
 
 ;; function-args
 ;; (require 'function-args)

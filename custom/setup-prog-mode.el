@@ -76,4 +76,4 @@
   :config
   (setq highlight-indent-guides-method 'character))
 
-(provide 'setup-coding)
+(provide 'setup-prog-mode)
