@@ -8,12 +8,48 @@
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   (require 'dap-cpptools)
-  (yas-global-mode))(require 'package)
-(add-to-list 'package-archives
-         '("melpa" . "http://melpa.org/packages/") t)
+  (yas-global-mode))
 
 (dap-mode 1)
 (dap-ui-mode 1)
+
+(use-package impatient-mode)
+
+(use-package emmet-mode)
+(use-package web-mode)
+(use-package js2-mode)
+(use-package yasnippet)
+(use-package vue-mode)
+
+(use-package tide :ensure t)
+(use-package flycheck :ensure t)
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; formats the buffer before saving
+(add-hook 'before-save-hook 'tide-format-before-save)
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "ts" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
+
+;; enable typescript - tslint checker
+(flycheck-add-mode 'typescript-tslint 'web-mode)
 
 ;; enabling git-gutter for git-files
 (use-package git-gutter
@@ -33,6 +69,11 @@
 (define-key global-map [remap execute-extended-command] #'helm-M-x)
 (define-key global-map [remap switch-to-buffer] #'helm-mini)
 
-(add-hook 'prog-mode 'highlight-indent-guides-mode)
+(add-hook 'prog-mode-hook 'linum-mode) ;; line numbers for code editors
+
+(use-package highlight-indent-guides
+  :hook (prog-mode . highlight-indent-guides-mode)
+  :config
+  (setq highlight-indent-guides-method 'character))
 
 (provide 'setup-coding)
