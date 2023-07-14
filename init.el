@@ -25,6 +25,7 @@
 ;; custom setup scripts
 (require 'setup-general)
 (require 'setup-ui)
+(require 'setup-dashboard)
 (require 'setup-coding)
 
 ;; function-args
@@ -43,7 +44,7 @@
  '(git-gutter:deleted-sign "--")
  '(git-gutter:modified-sign "  ")
  '(package-selected-packages
-   '(web-beautify dimmer mode-line-bell ctrlf doom-modeline solaire-mode highlight-indent-guides pdf-tools multiple-cursors mark-multiple modus-themes powerline ## neotree)))
+   '(impatient-mode web-beautify dimmer mode-line-bell ctrlf doom-modeline solaire-mode highlight-indent-guides pdf-tools multiple-cursors mark-multiple modus-themes powerline ## neotree)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
